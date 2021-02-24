@@ -10,9 +10,9 @@
 - クレジットカード決済機能
 - 従業員用顧客情報表示機能
 ### 使用技術一覧
-開発言語,フレームワーク: Python3, Django2, HTML5, Sass, JavaScript
-インフラ: AWS EC2
-データベース: PostgreSQL
-APサーバ: Gunicorn
-Webサーバ: Nginx
+- 開発言語,フレームワーク: Python3, Django2, HTML5, Sass, JavaScript
+- インフラ: AWS EC2
+- データベース: PostgreSQL
+- APサーバ: Gunicorn
+- Webサーバ: Nginx
 
