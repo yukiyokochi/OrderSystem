@@ -1,0 +1,346 @@
+$Theme:#EFAF4B;
+
+@mixin button($width,$height,$margin){
+  width:$width;
+  height:$height;
+  display:block;
+  background-color:$Theme;
+  text-decoration:none;
+  border-radius:$height/2;
+  cursor:pointer;
+  margin:$margin;
+  p{
+    font-size:20px;
+    color:#fff;
+    line-height:$height;
+    text-align:center;
+    font-weight:bold;
+  }
+}
+
+@mixin h2-para($margin-top){
+  font-size:20px;
+  font-weight:600;
+  margin-top:$margin-top;
+}
+
+@mixin p-desc($margin-top){
+  font-size:16px;
+  line-height:32px;
+  margin-top:$margin-top;
+}
+
+@mixin p-word($margin-top){
+  font-size:18px;
+  line-height:32px;
+  margin-top:$margin-top;
+}
+
+// style of location_register
+
+.order-direction{
+  width:100%;
+  height:120px;
+  background-color: $Theme;
+  display:flex;
+  position:relative;
+  .cart{
+    position:absolute;
+    display:block;
+    background-image:url('img/cart.png');
+    background-position: center;
+    background-size:cover;
+    width:75px;
+    height:64px;
+    top:30px;
+    right:10%;
+    text-decoration:none;
+    p{
+      font-size:24px;
+      color:#fff;
+      text-align:center;
+    }
+  }
+  .order-direction-flex{
+    display:flex;
+    margin:0 0 0 10%;
+    .order-direction-each{
+      width:150px;
+      padding:12px 0 0;
+      .round{
+        width:66px;
+        height:66px;
+        border-radius: 50%;
+        background-color:$Theme;
+        margin:0px auto 8px;
+        p{
+          line-height:66px;
+          font-size:48px;
+          text-align: center;
+          color:#fff;
+        }
+      }
+      .flow-para{
+        @include p-word(0);
+        line-height:24px;
+        text-align:center;
+        color:#fff;
+      }
+    }
+    .on{
+      .round{
+        width:66px;
+        height:66px;
+        border-radius: 50%;
+        background-color:#fff;
+        margin:0px auto 8px;
+        p{
+          line-height:66px;
+          font-size:48px;
+          text-align: center;
+          color:$Theme;
+        }
+      }
+    }
+  }
+}
+
+.location-register{
+  form{
+    margin:30px 0 0;
+    select{
+      margin:0 0 0 10px;
+      border:2px solid $Theme;
+      width:250px;
+      height:40px;
+      -webkit-appearance: none;
+    }
+    button{
+      @include button(325px,60px,50px auto 0);
+      color:#fff;
+      font-size:20px;
+      -webkit-appearance: none;
+      border:0;
+    }
+  }
+}
+
+// style of category_list
+.menu{
+  .each-category-content{
+    .category-title{
+      display:flex;
+      margin-top:50px;
+      .category-title-deco{
+        width:6px;
+        height:25px;
+        background-color:#373737;
+        margin:0 5px 0 0;
+      }
+      .h2-para{
+        @include h2-para(0)
+        line-height:25px;
+      }
+    }
+    .menu-flex{
+      display:flex;
+      flex-wrap: wrap;
+      margin:30px 0 0;
+      .menu-each{
+        width:31%;
+        margin:0 2% 0 0;
+        a{
+          img{
+            width:100%;
+            height:160px;
+          }
+        }
+        .dish-desc{
+          display:flex;
+          width:100%;
+          justify-content:space-between;
+          .p-word{
+            @include p-word(0)
+          }
+        }
+        .dish-buttons{
+          margin:10px 0 0;
+          display:flex;
+          width:100%;
+          justify-content:space-between;
+          .button{
+            @include button(47%,30px,0);
+            p{
+              font-size:16px;
+              font-weight:400;
+            }
+          }
+          .soldout{
+            @include button(47%,30px,0);
+            background-color:#373737;
+            p{
+              font-size:16px;
+              font-weight:400;
+              color:#aaa;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// style of menu_detail
+.menu-detail{
+  .menu-desc-flex{
+    margin-top:50px;
+    display:flex;
+    justify-content:space-between;
+    img{
+      width:47%;
+      height:290px;
+    }
+    .menu-desc{
+      width:47%;
+      p{
+        @include p-word(0)
+      }
+      .menu-detail-buttons{
+        margin:20px 0 0;
+        display:flex;
+        width:100%;
+        justify-content: space-between;
+        .button{
+          @include button(47%,40px,0);
+          p{
+            font-size:16px;
+            font-weight:400;
+          }
+        }
+        .soldout{
+          @include button(47%,40px,0);
+          background-color:#373737;
+          p{
+            font-size:16px;
+            font-weight:400;
+            color:#aaa;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:420px){
+  @mixin h2-para($margin-top){
+    font-size:18px;
+    font-weight:600;
+    margin-top:$margin-top;
+  }
+
+  @mixin p-desc($margin-top){
+    font-size:14px;
+    line-height:28px;
+    margin-top:$margin-top;
+  }
+
+  @mixin p-word($margin-top){
+    font-size:16px;
+    line-height:28px;
+    margin-top:$margin-top;
+  }
+
+  // style of location_register
+
+  .order-direction{
+    height:80px;
+    .cart{
+      width:37px;
+      height:32px;
+      top:30px;
+      right:5%;
+      p{
+        font-size:16px;
+      }
+    }
+    .order-direction-flex{
+      margin:0 0 0 5%;
+      .order-direction-each{
+        width:60px;
+        padding:8px 0 0;
+        .round{
+          width:35px;
+          height:35px;
+          border-radius: 50%;
+          margin:0px auto 4px;
+          p{
+            line-height:35px;
+            font-size:28px;
+          }
+        }
+        .flow-para{
+          @include p-word(0);
+          font-size:11px;
+          line-height:14px;
+        }
+      }
+      .on{
+        .round{
+          width:35px;
+          height:35px;
+          margin:0px auto 4px;
+          p{
+            line-height:35px;
+            font-size:28px;
+          }
+        }
+      }
+    }
+  }
+
+  .location-register{
+    form{
+      button{
+        @include button(250px,50px,40px auto 0);
+        p{
+          font-size:18px;
+        }
+      }
+    }
+  }
+
+  // style of category_list
+  .menu{
+    .each-category-content{
+      .menu-flex{
+        display:block;
+        .menu-each{
+          margin:30px 0 0;
+          width:100%;
+          a{
+            img{
+              height:210px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // style of menu_detail
+  .menu-detail{
+    .menu-desc-flex{
+      display:block;
+      img{
+        width:100%;
+        height:210px;
+      }
+      .menu-desc{
+        width:100%;
+        p{
+          @include p-word(0)
+        }
+      }
+    }
+  }
+}

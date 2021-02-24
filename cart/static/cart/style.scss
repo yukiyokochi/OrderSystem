@@ -1,0 +1,281 @@
+$Theme:#EFAF4B;
+
+@mixin button($width,$height,$margin){
+  width:$width;
+  height:$height;
+  display:block;
+  background-color:$Theme;
+  text-decoration:none;
+  border-radius:$height/2;
+  cursor:pointer;
+  margin:$margin;
+  p{
+    font-size:20px;
+    color:#fff;
+    line-height:$height;
+    text-align:center;
+    font-weight:bold;
+  }
+}
+
+@mixin h2-para($margin-top){
+  font-size:20px;
+  font-weight:600;
+  margin-top:$margin-top;
+}
+
+@mixin p-desc($margin-top){
+  font-size:16px;
+  line-height:32px;
+  margin-top:$margin-top;
+}
+
+@mixin p-word($margin-top){
+  font-size:18px;
+  line-height:32px;
+  margin-top:$margin-top;
+}
+
+.order{
+  display:block;
+}
+.pay{
+  display:none;
+}
+.hidden-checkbox{
+  display:none;
+}
+
+// style of cart_detail
+
+.cart-items{
+  .h2-para{
+    @include h2-para(50px);
+  }
+  .cart-item-desc{
+    display:flex;
+    margin:30px 0 0;
+    p{
+      @include p-word(0);
+    }
+    .cart-menu-price{
+      margin: 0 0 0 20px;
+    }
+  }
+  .cart-sub-total{
+    display:flex;
+    margin:10px 0 0;
+    .cart-item-adj{
+      display:flex;
+      .cart-item-adj-button{
+        @include button(40px,40px,0);
+      }
+      .cart-item-number{
+        line-height:40px;
+        margin:0 20px 0;
+        font-size:20px;
+      }
+    }
+    .subtotal{
+      margin:0 0 0 30px;
+      font-size:25px;
+      line-height:40px;
+    }
+  }
+  .add-dish{
+    @include button(320px,60px,30px 0 0);
+  }
+  .about-checkout{
+    @include p-desc(30px);
+  }
+  .checkout{
+    @include button(320px,60px,30px 0 0);
+  }
+}
+
+// style of form
+
+.order-form{
+  .h2-para{
+    @include h2-para(50px);
+  }
+  form{
+    margin:30px 0 0;
+    .field{
+      height:40px;
+      label{
+        margin:0 20px 0 0;
+      }
+      input,select{
+        height:26px;
+        width:200px;
+        border:2px solid $Theme;
+      }
+      textarea{
+        border:2px solid $Theme;
+        height:100px;
+        width:500px;
+      }
+    }
+  }
+  .cart-item-desc{
+    @include p-desc(15px);
+  }
+  .about-price{
+    @include p-desc(25px);
+  }
+  .about-ship{
+    @include p-desc(15px);
+  }
+  button{
+    @include button(320px,60px,30px auto 0);
+    -webkit-appearance: none;
+    border:0;
+  }
+}
+
+//style of payjp
+.payjp{
+  form{
+    .p-word{
+      @include p-word(15px);
+      margin-bottom:15px;
+    }
+  }
+  .card-info{
+    width:447px;
+    height:65px;
+    background-image:url('img/cardinfo.png');
+    background-position: center;
+    background-size:cover;
+    margin:30px 0 0;
+  }
+}
+.thanks-card{
+  .p-desc{
+    @include p-desc(15px);
+  }
+  .back-to-top{
+    @include button(320px,60px,30px auto 0);
+  }
+}
+
+//style of thanks
+.thanks-page{
+  .p-desc{
+    @include p-desc(15px);
+  }
+  .inportant-info{
+    font-size:25px;
+  }
+  .back-to-top{
+    @include button(320px,60px,30px auto 0);
+  }
+}
+
+@media screen and (max-width:420px){
+  @mixin h2-para($margin-top){
+    font-size:18px;
+    font-weight:600;
+    margin-top:$margin-top;
+  }
+
+  @mixin p-desc($margin-top){
+    font-size:14px;
+    line-height:28px;
+    margin-top:$margin-top;
+  }
+
+  @mixin p-word($margin-top){
+    font-size:16px;
+    line-height:28px;
+    margin-top:$margin-top;
+  }
+  // style of cart_detail
+
+  .cart-items{
+    .cart-sub-total{
+      .subtotal{
+        font-size:22px;
+      }
+    }
+    .add-dish{
+      @include button(250px,50px,30px auto 0);
+    }
+    .about-checkout{
+      @include p-desc(30px);
+      font-size:16px;
+    }
+    .checkout{
+      @include button(250px,50px,30px auto 0);
+    }
+  }
+
+  // style of form
+
+  .order-form{
+    #id_address{
+      margin: 10px 0 0 78px;
+    }
+    form{
+      .field{
+        label{
+          margin:0 20px 0 0;
+          font-size:14px;
+        }
+        input,select{
+          height:26px;
+          width:160px;
+          border:2px solid $Theme;
+        }
+        textarea{
+          width:100%;
+        }
+      }
+      .address-field{
+        height:83px;
+      }
+    }
+    .cart-item-desc{
+      @include p-desc(15px);
+      font-size:16px;
+    }
+    .about-price{
+      @include p-desc(25px);
+      font-size:16px;
+    }
+    .about-ship{
+      @include p-desc(15px);
+      font-size:16px;
+    }
+    button{
+      @include button(250px,50px,30px auto 0);
+    }
+  }
+
+  //style of payjp
+  .payjp{
+    .card-info{
+      width:223px;
+      height:33px;
+    }
+  }
+  .thanks-card{
+    .p-desc{
+      @include p-desc(15px);
+    }
+    .back-to-top{
+      @include button(250px,50px,30px auto 0);
+    }
+  }
+
+  //style of thanks
+  .thanks-page{
+    .inportant-info{
+      font-size:20px;
+    }
+    .back-to-top{
+      @include button(250px,50px,30px auto 0);
+    }
+  }
+}

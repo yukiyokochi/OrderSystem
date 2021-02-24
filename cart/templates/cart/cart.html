@@ -1,0 +1,66 @@
+{% extends 'cart/base.html' %}
+{% block content %}
+<section class="order-direction">
+  <div class="order-direction-flex">
+    <div class="order-direction-each">
+      <div class="round">
+        <p>1</p>
+      </div>
+      <p class="flow-para">配達エリア選択</p>
+    </div>
+    <div class="order-direction-each on">
+      <div class="round">
+        <p>2</p>
+      </div>
+      <p class="flow-para">料理選択</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>3</p>
+      </div>
+      <p class="flow-para">注文フォーム記入</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>4</p>
+      </div>
+      <p class="flow-para">注文完了</p>
+    </div>
+  </div>
+</section>
+<section class="cart-items">
+  <div class="container">
+    {% if not cart_items %}
+      <h1 class="h2-para">カートは空です。</h1>
+      <p class="p-desc"><a href="{% url 'ec:menu_list' %}">こちら</a>からカートへ料理を追加してください。</p>
+    {% else %}
+      <div>
+        <h2 class="h2-para">カート内料理</h2>
+          {% for cart_item in cart_items %}
+            <div class="cart-item-desc">
+              <p>{{cart_item.product.name}}</p>
+              <p class="cart-menu-price">単価: ¥{{cart_item.product.price}}</p>
+            </div>
+            <div class="cart-sub-total">
+              <div class="cart-item-adj">
+                <a class="cart-item-adj-button" href="{% url 'cart:cart_remove' cart_item.product.id %}"><p>-</p></a>
+                <p class="cart-item-number">{{cart_item.quantity}}</p>
+                <a class="cart-item-adj-button" href="{% url 'cart:add_cart' cart_item.product.id %}"><p>+</p></a>
+              </div>
+              <p class="subtotal">¥{{cart_item.sub_total}}</p>
+            </div>
+          {% endfor %}
+        <a class="add-dish" href="{% url 'ec:menu_list' %}"><p>料理を追加する</p></a>
+        <h2 class="h2-para">チェックアウト</h2>
+        <p class="about-checkout">注文金額は: <span class="bold-para">¥{{ total }}</span>です。<br>※{{ location }}では別途<span class="bold-para">¥{{ location.shippingtax }}</span>の配達料がかかります。</p>
+        {% if total >= location.mustorderprice %}
+        <a class="checkout" href="{% url 'cart:form' %}"><p>決済へすすむ</p></a>
+        {% else %}
+        <p class="about-checkout">{{ location }}では{{ location.mustorderprice }}円の注文金額が必要です </p>
+        <p><a href="{% url 'ec:menu_list' %}">こちら</a>から料理を追加してください</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+</section>

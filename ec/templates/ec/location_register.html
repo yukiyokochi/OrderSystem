@@ -1,0 +1,42 @@
+{% extends 'ec/base.html' %}
+{% block content %}
+<section class="order-direction">
+  <div class="order-direction-flex">
+    <div class="order-direction-each on">
+      <div class="round">
+        <p>1</p>
+      </div>
+      <p class="flow-para">配達エリア選択</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>2</p>
+      </div>
+      <p class="flow-para">料理選択</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>3</p>
+      </div>
+      <p class="flow-para">注文フォーム記入</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>4</p>
+      </div>
+      <p class="flow-para">注文完了</p>
+    </div>
+  </div>
+</section>
+<section class="location-register">
+  <div class="container">
+    <h2 class="h2-para">配達エリア選択</h2>
+    <p class="p-desc">住所を選択してください<br>住所により必要注文最低金額が変化します。</p>
+    <form action="" method="Post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <button type="submit">決定</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

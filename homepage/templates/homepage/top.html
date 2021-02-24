@@ -1,0 +1,26 @@
+{% extends 'homepage/base.html' %}
+{% block content %}
+<section class="eyecatch">
+  <div class="container">
+    <h1 class="site-title">Portfolio of Yokochi Yuki</h1>
+  </div>
+</section>
+<section class="about-portfolio">
+  <div class="container">
+    <h2 class="h2-para">About Portfolio</h2>
+    <p class="p-desc">都内飲食店様より受注したオンライン料理注文システム開発案件の納品物を、ポートフォリオ用Webアプリケーションとしてリメイクしました。<br>
+実際の納品物との違いは、クライアント様のご要望により店舗情報を公開していないことです。具体的に以下が挙げられます。<br>
+・店舗ホームページを含む全ての店舗情報を非公開としたこと<br>
+・ページデザインをシンプルなものへ変更したこと<br>
+・店舗で撮影された写真は全てフリー画像へ差し替えたこと<br>
+・実際の提供されている料理メニューではなく架空の料理メニューとしたこと</p>
+    <p class="p-desc"><span class="bold-para">補足情報</span><br>
+工期: 2020年6月下旬~8月上旬<br>
+開発者: 横地 悠紀(全工程を担当)<br>
+Github URL:<a href="https://github.com/yukiyokochi/portfolio">https://github.com/yukiyokochi/portfolio</a><br>
+ポートフォリオとしての掲載の許可: 取得済み(店舗情報を公開しない場合に限る)</p>
+    <p class="p-desc">以下のボタンを押下し、ポートフォリオ用Webアプリケーションへ遷移できます。</p>
+    <a class="order-button" href="{% url 'ec:location_register' %}"><p>注文する</p></a>
+  </div>
+</section>
+{% endblock %}

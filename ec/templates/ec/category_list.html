@@ -1,0 +1,87 @@
+{% extends 'ec/base.html' %}
+{% block content %}
+<section class="order-direction">
+  <div class="order-direction-flex">
+    <div class="order-direction-each">
+      <div class="round">
+        <p>1</p>
+      </div>
+      <p class="flow-para">配達エリア選択</p>
+    </div>
+    <div class="order-direction-each on">
+      <div class="round">
+        <p>2</p>
+      </div>
+      <p class="flow-para">料理選択</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>3</p>
+      </div>
+      <p class="flow-para">注文フォーム記入</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>4</p>
+      </div>
+      <p class="flow-para">注文完了</p>
+    </div>
+  </div>
+  <a class="cart" href="{% url 'cart:cart_detail' %}">
+    <p>{{item_count}}</p>
+  </a>
+</section>
+<section class="menu">
+  <div class="container">
+      {% for category in object_list  %}
+        <div class="each-category-content">
+          <div class="category-title">
+            <div class="category-title-deco"></div>
+            <p class="h2-para">{{category.name}}</p>
+          </div>
+          <div class="menu-flex">
+            {% for menu in category.menus.all %}
+              {% if menu.soldout == 1 %}
+                <div class="menu-each">
+                  <a href="{% url 'ec:menu_detail' menu.pk %}">
+                    <img src='/{{ IMAGE_URL }}{{menu.image}}' height=100 width=200>
+                  </a>
+                  <div class="dish-desc">
+                    <p class="p-word">{{ menu.name }}</p>
+                    <p class="p-word">¥{{ menu.price }}</p>
+                  </div>
+                  <div class="dish-buttons">
+                    <a  href="{% url 'ec:menu_detail' menu.pk %}" class="button view_detail">
+                      <p href="{% url 'ec:menu_detail' menu.pk %}">詳細を見る</p>
+                    </a>
+                    <a class="button soldout">
+                      <p>品切れ中</p>
+                    </a>
+                  </div>
+                </div>
+              {% else %}
+                <div class="menu-each">
+                  <a href="{% url 'ec:menu_detail' menu.pk %}">
+                    <img src='/{{ IMAGE_URL }}{{menu.image}}' height=100 width=200>
+                  </a>
+                  <div class="dish-desc">
+                    <p class="p-word">{{ menu.name }}</p>
+                    <p class="p-word">¥{{ menu.price }}</p>
+                  </div>
+                  <div class="dish-buttons">
+                    <a  href="{% url 'ec:menu_detail' menu.pk %}" class="button view_detail">
+                      <p href="{% url 'ec:menu_detail' menu.pk %}">詳細を見る</p>
+                    </a>
+                    <a href="{% url 'cart:add_cart' menu.pk %}" class="button add-cart">
+                      <p>カートへ追加</p>
+                    </a>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+  </div>
+</section>
+{% endblock %}

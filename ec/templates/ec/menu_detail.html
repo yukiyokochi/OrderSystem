@@ -1,0 +1,69 @@
+{% extends 'ec/base.html' %}
+{% block content %}
+<section class="order-direction">
+  <div class="order-direction-flex">
+    <div class="order-direction-each">
+      <div class="round">
+        <p>1</p>
+      </div>
+      <p class="flow-para">配達エリア選択</p>
+    </div>
+    <div class="order-direction-each on">
+      <div class="round">
+        <p>2</p>
+      </div>
+      <p class="flow-para">料理選択</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>3</p>
+      </div>
+      <p class="flow-para">注文フォーム記入</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>4</p>
+      </div>
+      <p class="flow-para">注文完了</p>
+    </div>
+  </div>
+  <a class="cart" href="{% url 'cart:cart_detail' %}">
+    <p>{{item_count}}</p>
+  </a>
+</section>
+<section class="menu-detail">
+  <div class="container">
+    {% if menu.soldout == 1 %}
+    <div class="menu-desc-flex">
+      <img src='/{{ IMAGE_URL }}{{menu.image}}' height=100 width=200>
+      <div class="menu-desc">
+        <p>{{ menu.name }}<br>¥{{ menu.price }}<br>{{ menu.text }}</p>
+        <div class="menu-detail-buttons">
+          <a class="button soldout">
+            <p>品切れ中</p>
+          </a>
+          <a href="{% url 'ec:menu_list' %}" class="button back">
+            <p>戻る</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="menu-desc-flex">
+      <img src='/{{ IMAGE_URL }}{{menu.image}}' height=100 width=200>
+      <div class="menu-desc">
+        <p>{{ menu.name }}<br>¥{{ menu.price }}<br>{{ menu.text }}</p>
+        <div class="menu-detail-buttons">
+          <a href="{% url 'cart:add_cart' menu.pk %}" class="button add-cart">
+            <p>カートへ追加</p>
+          </a>
+          <a href="{% url 'ec:menu_list' %}" class="button back">
+            <p>戻る</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,103 @@
+{% load sass_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% sass_src 'homepage/style.scss' %}">
+  <link rel="stylesheet" href="{% sass_src 'ec/style.scss' %}">
+  <link rel="stylesheet" href="{% sass_src 'cart/style.scss' %}">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'cart/cannotback.js' %}"></script>
+</head>
+<body>
+  {% if charge %}
+  <section class="order-direction">
+    <div class="order-direction-flex">
+      <div class="order-direction-each">
+        <div class="round">
+          <p>1</p>
+        </div>
+        <p class="flow-para">配達エリア選択</p>
+      </div>
+      <div class="order-direction-each">
+        <div class="round">
+          <p>2</p>
+        </div>
+        <p class="flow-para">料理選択</p>
+      </div>
+      <div class="order-direction-each">
+        <div class="round">
+          <p>3</p>
+        </div>
+        <p class="flow-para">注文フォーム記入</p>
+      </div>
+      <div class="order-direction-each on">
+        <div class="round">
+          <p>4</p>
+        </div>
+        <p class="flow-para">注文完了</p>
+      </div>
+    </div>
+  </section>
+  <section class="thanks-card">
+    <div class="container">
+      <h1 class="h2-para">ご注文ありがとうございました。</h1>
+      <p class="p-desc">{{ total|add:location.shippingtax }}円のお支払いが完了しました。<br>お届け時間：約{{ location.shippingtime }}分<br>※忙しさや天候により変動あり</p>
+      {% for order in order_list %}
+      <p class="p-desc">●ご注文内容<br>注文日時:{{order.created_at}}<br>{{order.order_content}}<br>●お客様情報<br>お客様氏名:{{order.name}}<br>お客様住所:{{order.location}}{{order.address}}<br>お客様電話番号:{{order.tel}}<br>お客様メールアドレス:{{order.email}}<br>選択された支払い方法:{{order.payway}}<br>特記事項:{{order.text}}</p>
+      {% endfor %}
+      <a class="button back-to-top" href="{% url 'homepage:top' %}"><p>ホームへ</p></a>
+    </div>
+  </section>
+  {% else %}
+  <section class="order-direction">
+    <div class="order-direction-flex">
+      <div class="order-direction-each">
+        <div class="round">
+          <p>1</p>
+        </div>
+        <p class="flow-para">配達エリア選択</p>
+      </div>
+      <div class="order-direction-each">
+        <div class="round">
+          <p>2</p>
+        </div>
+        <p class="flow-para">料理選択</p>
+      </div>
+      <div class="order-direction-each on">
+        <div class="round">
+          <p>3</p>
+        </div>
+        <p class="flow-para">注文フォーム記入</p>
+      </div>
+      <div class="order-direction-each">
+        <div class="round">
+          <p>4</p>
+        </div>
+        <p class="flow-para">注文完了</p>
+      </div>
+    </div>
+  </section>
+  <section class="payjp">
+    <div class="container">
+      <h1 class="h2-para">クレジットカードお支払い画面</h1>
+      <form action="{% url 'cart:payjp' %}" method="post">
+        {% csrf_token %}
+        <p class="p-word">お支払い金額: ¥{{ total|add:location.shippingtax }}</p>
+        <input type="hidden" name="amount" class="amount" id="amount" value="{{ total|add:location.shippingtax }}" readonly>
+        <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="{{ public_key }}">
+        </script>
+      </form>
+      <div class="card-info"></div>
+    </div>
+  </section>
+  {% endif %}
+</body>
+<footer>©️Yuki Yokochi</footer>
+</html>

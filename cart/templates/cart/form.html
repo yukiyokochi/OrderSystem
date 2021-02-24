@@ -1,0 +1,92 @@
+{% extends 'cart/base.html' %}
+{% block content %}
+<section class="order-direction">
+  <div class="order-direction-flex">
+    <div class="order-direction-each">
+      <div class="round">
+        <p>1</p>
+      </div>
+      <p class="flow-para">配達エリア選択</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>2</p>
+      </div>
+      <p class="flow-para">料理選択</p>
+    </div>
+    <div class="order-direction-each on">
+      <div class="round">
+        <p>3</p>
+      </div>
+      <p class="flow-para">注文フォーム記入</p>
+    </div>
+    <div class="order-direction-each">
+      <div class="round">
+        <p>4</p>
+      </div>
+      <p class="flow-para">注文完了</p>
+    </div>
+  </div>
+</section>
+<section class="order-form">
+  <div class="container">
+    <h1 class="h2-para">注文フォーム</h1>
+    <form action="" method="POST">
+      {{ form.non_field_errors }}
+      <div class="field">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {{ field.errors }}
+      </div>
+      <div class="field address-field">
+        {{ form.address.label_tag }}
+        <input type="text" name="location" value="{{ location }}" readonly>
+        {{ form.address }}
+        <span class="helptext">{{ form.address.help_text }}</span>
+        {{ field.errors }}
+      </div>
+      <div class="field">
+        {{ form.tel.label_tag }}
+        {{ form.tel }}
+        {{ field.errors }}
+      </div>
+      <div class="field">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ field.errors }}
+      </div>
+      <div class="field">
+        {{ form.payway.label_tag }}
+        {{ form.payway }}
+        {{ field.errors }}
+      </div>
+      <div class="field">
+        {{ form.text }}
+        <span class="helptext">{{ form.text.help_text }}</span>
+        {{ field.errors }}
+      </div>
+      <div class="field">
+        <input type="hidden" name="order_content" value="{% for cart_item in cart_items %}{{cart_item.product.name}}×{{cart_item.quantity}}個 | {% endfor %}" readonly>
+      </div>
+      <div class="field">
+        <input type="hidden" name="totalprice" value="{{ total|add:location.shippingtax }}" readonly>
+      </div>
+      <div class="field hidden-checkbox">
+        <input type="checkbox" name="myself" checked>
+      </div>
+      {% csrf_token %}
+      <h1 class="h2-para">注文内容確認</h1>
+      {% for cart_item in cart_items %}
+        <div class="cart-item-desc">
+          <p>{{cart_item.product.name}}</p>
+          <p class="cart-menu-price">単価: ¥{{cart_item.product.price}}</p>
+          <p>個数: {{cart_item.quantity}} × ¥{{cart_item.product.price}}　計:¥{{cart_item.sub_total}}</p>
+        </div>
+      {% endfor %}
+      <p class="about-price">注文金額:¥{{ total }}<br>送料:¥{{ location.shippingtax }}<br><span class="bold-para">合計金額:¥{{ total|add:location.shippingtax }}</span></p>
+      <p class="about-ship">{{ location }}には通常{{ location.shippingtime }}分で届きます。※忙しさや天候により変動あり</p>
+      <button type="submit" class="order"><p>注文</p></button>
+    </form>
+  </div>
+</section>
+{% endblock %}
