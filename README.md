@@ -38,6 +38,7 @@ Menus:店舗が登録する料理メニュー
 
 ##### 従業員用顧客情報  
 「Payments」の「注文・顧客情報一覧」(URL:/admin/cart/payment/client_info/)に、顧客がフォームに入力した情報や注文内容・金額などが新着順に表示されます。  
+
 ![Web 1280 – 10](https://user-images.githubusercontent.com/66051073/109168538-4599cc00-77c2-11eb-8c82-74cdf8a8e044.png)  
 
 ### 各料理メニュー
@@ -50,6 +51,7 @@ Menus:店舗が登録する料理メニュー
 - 販売状況(通常販売or売り切れ中)  
 
 ##### ページ上の振る舞い  
+
 ![Web 1280 – 12](https://user-images.githubusercontent.com/66051073/109168522-416dae80-77c2-11eb-8ff4-611b80707d66.png)  
 ![Web 1280 – 11](https://user-images.githubusercontent.com/66051073/109168541-46326280-77c2-11eb-9b2e-a8161a773cb8.png)  
 
@@ -62,6 +64,7 @@ Menus:店舗が登録する料理メニュー
 
 ##### 顧客が登録するページ  
 URL:/ec/location-register/  
+
 ![Web 1280 – 13](https://user-images.githubusercontent.com/66051073/109168527-43377200-77c2-11eb-9a56-bb370718f2dd.png)  
 
 ### カート
@@ -72,6 +75,7 @@ URL:/ec/location-register/
 
 ##### 注文フォームに進める条件
 カート内の料理の合計金額が、顧客が選択したエリアの必要注文最低額以上となった場合。  
+
 ![Web 1280 – 14](https://user-images.githubusercontent.com/66051073/109168529-43d00880-77c2-11eb-9e3c-92e23e715797.png)  
 
 ### 注文フォーム
@@ -86,12 +90,21 @@ URL:/ec/location-register/
 ##### 支払い方法による画面遷移
 
 ・支払い方法が「現金」だった場合、以下の画面へ遷移  
+
 ![Web 1280 – 18](https://user-images.githubusercontent.com/66051073/109168533-44689f00-77c2-11eb-8ce5-facbea0e8486.png)
+
 ・支払い方法が「クレジットカード」だった場合、以下の画面へ遷移  
+
 ![Web 1280 – 15](https://user-images.githubusercontent.com/66051073/109168532-44689f00-77c2-11eb-8001-aec6ea0bde42.png)
 
 ### クレジットカード決済
 ##### PayJP  
 https://pay.jp/  
 ##### テストカード  
+テストカードを使用するには以下を支払い情報に入力してください。  
+カード:4242 4242 4242 4242  
+有効期限:未来の「月/年」を入力  
+CVC番号:３桁の数字を入力
+名前:間にスペースを持つ2つの英字列を入力  
+
 <img width="443" alt="スクリーンショット 2021-02-25 23 03 24" src="https://user-images.githubusercontent.com/66051073/109168537-45013580-77c2-11eb-8ac8-baa4d6087415.png">
